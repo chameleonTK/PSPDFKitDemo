@@ -28,8 +28,10 @@ import {
 import { useRef } from 'react';
 import PSPDFKitView from 'react-native-pspdfkit';
 import {Platform} from 'react-native';
-const DOCUMENT = Platform.OS === 'ios' ? '/Users/imtk/pdf/PSPDFKitDemo/android/app/src/main/assets/TOR_NewProject.pdf' : 'file:///android_asset/TOR_NewProject.pdf';
-
+const DOCUMENT =
+  Platform.OS === 'ios'
+    ? 'TOR_NewProject.pdf'
+    : 'file:///android_asset/TOR_NewProject.pdf';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -66,6 +68,7 @@ function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
+    flex: 1,
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
@@ -86,11 +89,11 @@ function App(): JSX.Element {
           pageTransition: 'scrollContinuous',
           scrollDirection: 'vertical',
         }}
-        ref={_ref.current}
+        ref={_ref}
         fragmentTag={_fragmentTag.current}
         style={{flex: 1}}
       />
-      
+
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
